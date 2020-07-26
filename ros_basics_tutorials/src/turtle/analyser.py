@@ -7,14 +7,14 @@ def new_data_refresh(message):
     angular_data = "Angular\n - x : {}\n - y : {}\n - z : {}".format(message.angular.x, message.angular.y, message.angular.z)
     rospy.loginfo(rospy.get_caller_id(), " ||||| ",linear_data+angular_data)
 
-def turtle_analyser():
+def analyser():
     
-    rospy.init_node("turtle_analyser", anonymous=True)
-    rospy.Subscriber("/turtle/cmd_vel", Twist, new_data_refresh)
+    rospy.init_node("analyser", anonymous=True)
+    rospy.Subscriber("/turtle1/cmd_vel", Twist, new_data_refresh)
     rospy.spin()
     
 if __name__ == "__main__":
     try:
-        turtle_analyser()
+        analyser()
     except rospy.ROSInterruptException:
         rospy.loginfo("Program stopped")
